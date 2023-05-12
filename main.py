@@ -1,10 +1,10 @@
 from typing import List
 
+# Worked in collaboration with khyunjin1993:
 def path_to_file_list(path: str) -> List[str]:
-    """Reads a file and returns a list of lines in the file"""
-    # Will this be working?
+    """Reads a file and returns a list of non-empty lines in the file"""
     lines = open(path, 'r').read().split('\n')
-    return lines
+    return [line for line in lines if line.strip() != '']
 
 def train_file_list_to_json(english_file_list: List[str], german_file_list: List[str]) -> List[str]:
     """Converts two lists of file paths into a list of json strings"""
@@ -28,7 +28,8 @@ def train_file_list_to_json(english_file_list: List[str], german_file_list: List
         english_file = process_file(english_file)
         english_file = process_file(german_file)
 
-        processed_file_list.append(template_end + english_file + template_mid + german_file + template_start)
+        json_str = template_start + english_file + template_mid + german_file + template_end
+        processed_file_list.append(json_str)
     return processed_file_list
 
 
