@@ -24,9 +24,9 @@ def train_file_list_to_json(english_file_list: List[str], german_file_list: List
 
     processed_file_list = []
     for english_file, german_file in zip(english_file_list, german_file_list):
-        english = process_file(english_file)
-        german = process_file(german_file)
-        json_str = template_start + english + template_mid + german + template_end
+        english_file = process_file(english_file)
+        german_file = process_file(german_file)
+        json_str = template_start + english_file + template_mid + german_file + template_end
         processed_file_list.append(json_str)
 
     return processed_file_list
